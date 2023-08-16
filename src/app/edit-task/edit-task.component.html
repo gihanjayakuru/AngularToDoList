@@ -1,1 +1,29 @@
-<p>edit-task works!</p>
+<div class="container mt-4">
+  <h2>Edit Task</h2>
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      [(ngModel)]="task.title"
+      placeholder="Title"
+    />
+  </div>
+  <div class="form-group">
+    <label for="status">Status:</label>
+    <div class="icon-select">
+      <i class="fas fa-chevron-down"></i>
+      <select class="form-control" id="status" [(ngModel)]="task.status">
+        <option value="Pending"><i class="far fa-clock"></i> Pending</option>
+        <option value="Progress">
+          <i class="fas fa-spinner"></i> Progress
+        </option>
+        <option value="Complete">
+          <i class="fas fa-check-circle"></i> Complete
+        </option>
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="updateTask()">Update Task</button>
+</div>

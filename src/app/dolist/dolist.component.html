@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <div class="card">
-    <h1>TDO List</h1>
+    <h1>ToDo List</h1>
   </div>
 
   <form>
@@ -18,18 +18,51 @@
       Save
     </button>
   </form>
-
-  <input type="text" class="form-control" id="task" placeholder="Search" />
 </div>
 
 <div class="container mt-4">
+  <input
+    type="text"
+    class="form-control"
+    id="task"
+    placeholder="Search"
+    style="
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 5px;
+      width: 200px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    "
+  />
+
   <h1>DoList Table</h1>
   <table class="table">
     <thead>
-      <h1 *ngIf="!isResultLoaded">Loading.................</h1>
       <tr>
-        <th scope="col">Taks</th>
-        <th scope="col">Status</th>
+        <th
+          scope="col"
+          (click)="sortColumn = 'title'; toggleSortDirection()"
+          [ngClass]="{
+            sorted: sortColumn === 'title',
+            'sorted-asc': sortColumn === 'title' && sortDirection === 'asc',
+            'sorted-desc': sortColumn === 'title' && sortDirection === 'desc'
+          }"
+        >
+          Task <i class="fas fa-sort"></i>
+        </th>
+        <th
+          scope="col"
+          (click)="sortColumn = 'status'; toggleSortDirection()"
+          [ngClass]="{
+            sorted: sortColumn === 'status',
+            'sorted-asc': sortColumn === 'status' && sortDirection === 'asc',
+            'sorted-desc': sortColumn === 'status' && sortDirection === 'desc'
+          }"
+        >
+          Status <i class="fas fa-sort"></i>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -40,7 +73,7 @@
           <button
             type="button"
             class="btn btn-success"
-            (click)="setUpdate(task)"
+            (click)="editTask(task)"
           >
             Edit
           </button>
@@ -55,4 +88,21 @@
       </tr>
     </tbody>
   </table>
+  <div class="pagination">
+    <button
+      class="btn btn-secondary"
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      Previous
+    </button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button
+      class="btn btn-secondary"
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
 </div>

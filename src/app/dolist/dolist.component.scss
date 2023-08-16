@@ -1,0 +1,18 @@
+th {
+  cursor: pointer;
+}
+
+th.sorted {
+  font-weight: bold;
+}
+
+th.sorted-asc::after {
+  content: " ▲";
+}
+
+th.sorted-desc::after {
+  content: " ▼";
+}
+.container {
+  position: relative;
+}
