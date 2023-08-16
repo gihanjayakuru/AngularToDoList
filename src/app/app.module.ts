@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { DolistComponent } from './dolist/dolist.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 @NgModule({
-  declarations: [AppComponent, DolistComponent],
+  declarations: [AppComponent, DolistComponent, EditTaskComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -21,6 +21,10 @@ export class DolistComponent {
 
   ngOnInit(): void {}
 
+  editTask(task: any) {
+    this.router.navigate(['/edit-task', task.id]); // Assuming you have an ID property for tasks
+  }
+
   getAllTask() {
     this.http
       .get('http://localhost:8080/api/dolist/')
@@ -63,17 +67,17 @@ export class DolistComponent {
       .put('http://localhost:8080/api/dolist/update' + '/' + this.Tid, bodyData)
       .subscribe((resultData: any) => {
         console.log(resultData);
-        alert('Student Registered Updateddd');
+        alert('Task Registered Updated');
         this.getAllTask();
       });
   }
 
   setDelete(data: any) {
     this.http
-      .delete('http://localhost:8080/api/dolist/delete' + '/' + data.Tid)
+      .delete('http://localhost:8080/api/dolist/delete' + '/' + data.id)
       .subscribe((resultData: any) => {
         console.log(resultData);
-        alert('task Deletedddd');
+        alert('task Deleted');
         this.getAllTask();
       });
   }
