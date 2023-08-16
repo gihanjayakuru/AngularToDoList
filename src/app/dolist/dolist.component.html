@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="card">
+    <h1>TDO List</h1>
+  </div>
+
+  <form>
+    <div class="form-group">
+      <label for="">Add Task</label>
+      <input
+        type="text"
+        [(ngModel)]="title"
+        [ngModelOptions]="{ standalone: true }"
+        class="form-control"
+        id="task"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mt-4" (click)="save()">
+      Save
+    </button>
+  </form>
+
+  <input type="text" class="form-control" id="task" placeholder="Search" />
+</div>
+
+<div class="container mt-4">
+  <h1>DoList Table</h1>
+  <table class="table">
+    <thead>
+      <h1 *ngIf="!isResultLoaded">Loading.................</h1>
+      <tr>
+        <th scope="col">Taks</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of dolistArray">
+        <td>{{ task.title }}</td>
+        <td>{{ task.status }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="setUpdate(task)"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="setDelete(task)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
